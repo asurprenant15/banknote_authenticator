@@ -1,38 +1,65 @@
-{% extends 'base.html' %}
-
-{% block head %} 
+{% extends 'base.html' %} {% block head %}
 <title>prediction</title>
-{% endblock %}
-
-{% block body %} 
-<hr>
+{% endblock %} {% block body %}
+<hr />
 <h2>Predict Bank Note Authenticity</h2>
-<form action='/predict' method='POST'>
-    Variance: <input class="form-control me-2" type="number" step=any  value= 0 name="variance" aria-label="variance">
-    <br>
-    Skewness: <input class="form-control me-2" type="number" step=any value= 0 name="skewness" aria-label="skewness">
-    <br>
-    Curtosis: <input class="form-control me-2" type="number" step=any value= 0 name="curtosis" aria-label="curtosis">
-    <br>
-    Entropy: <input class="form-control me-2" type="number" step=any value= 0  name="entropy" aria-label="entropy">
-    <br>
-    <input type='submit' class="btn btn-primary" value='Predict'>
+<form action="/" method="POST">
+  Variance:
+  <input
+    class="form-control me-2"
+    type="number"
+    step="any"
+    value="0"
+    name="variance"
+    aria-label="variance"
+  />
+  <br />
+  Skewness:
+  <input
+    class="form-control me-2"
+    type="number"
+    step="any"
+    value="0"
+    name="skewness"
+    aria-label="skewness"
+  />
+  <br />
+  Curtosis:
+  <input
+    class="form-control me-2"
+    type="number"
+    step="any"
+    value="0"
+    name="curtosis"
+    aria-label="curtosis"
+  />
+  <br />
+  Entropy:
+  <input
+    class="form-control me-2"
+    type="number"
+    step="any"
+    value="0"
+    name="entropy"
+    aria-label="entropy"
+  />
+  <br />
+  <input type="submit" class="btn btn-primary" value="Predict" />
 </form>
-<hr>
+<hr />
 {% for prediction in predictions %}
-    <small>Variance: {{ prediction.variance }}</small>
-    <small>Skewness: {{ prediction.skewness }}</small>
-    <small>Curtosis: {{ prediction.curtosis }}</small>
-    <small>Entropy: {{ prediction.entropy }}</small>
+<small>Variance: {{ prediction.variance }}</small>
+<small>Skewness: {{ prediction.skewness }}</small>
+<small>Curtosis: {{ prediction.curtosis }}</small>
+<small>Entropy: {{ prediction.entropy }}</small>
 
-    {% if prediction.prediction  == 1 %} 
-        <h3 style="color:green">Authentic</h3>
-    {% else %}
-        <h3 style="color:red">Not Authentic</h3>
-    {%endif%}
-    <br>
-    <a class="btn btn-danger" href='/predict/delete/{{prediction.id}}'>Delete</a>
+{% if prediction.prediction == 1 %}
+<h3 style="color: green">Authentic</h3>
+{% else %}
+<h3 style="color: red">Not Authentic</h3>
+{%endif%}
+<br />
+<a class="btn btn-danger" href="/delete/{{prediction.id}}">Delete</a>
 
-    <hr>
-{%endfor%}
-{% endblock %}
+<hr />
+{%endfor%} {% endblock %}

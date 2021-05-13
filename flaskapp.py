@@ -9,7 +9,7 @@ import pickle
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV == 'dev':
   app.debug = True
@@ -38,33 +38,40 @@ class Parameters(db.Model):
 pickle_in = open('classifier.pkl','rb')
 classifier = pickle.load(pickle_in)
 
-@app.route('/')
-def welcome():
-    return render_template('index.html')
+# @app.route('/')
+# def welcome():
+#     return render_template('index.html')
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def predict_note_authentication():
   if request.method == 'POST':
     pred_variance = request.form['variance']
     pred_skewness = request.form['skewness']
     pred_curtosis = request.form['curtosis']
     pred_entropy = request.form['entropy']
+
+
     pred_prediction = classifier.predict([[pred_variance, pred_skewness,pred_curtosis, pred_entropy]])
     pred_prediction = int(pred_prediction)
+
+
     new_prediction = Parameters(variance= pred_variance,skewness = pred_skewness, curtosis= pred_curtosis, entropy = pred_entropy, prediction = pred_prediction)
     db.session.add(new_prediction)
     db.session.commit()
-    return redirect('/predict')
+    return redirect('/')
   else:
     all_predictions = Parameters.query.all()
     return render_template('predict.html', predictions = all_predictions)
      
-@app.route('/predict/delete/<int:id>')
+@app.route('/delete/<int:id>')
 def delete(id):
     prediction = Parameters.query.get_or_404(id)
     db.session.delete(prediction)
     db.session.commit()
-    return redirect('/predict')
+    return redirect('/')
 
 if __name__ == '__main__':
+  if ENV == 'dev':
     app.run(debug=True)
+  else:
+    app.run(debug=False)

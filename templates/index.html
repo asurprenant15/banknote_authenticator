@@ -1,31 +1,26 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Home</title>
-{% endblock %}
-
-
-
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">Banknote Athentication API</span>
-      </a>
-    </header>
+  <header class="pb-3 mb-4 border-bottom">
+    <a
+      href="/"
+      class="d-flex align-items-center text-dark text-decoration-none"
+    >
+      <span class="fs-4">Banknote Athentication API</span>
+    </a>
+  </header>
 
-    <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Amazing accuracy!</h1>
-        <p class="col-md-8 fs-4"></p>
-        <a class="btn btn-primary" href="/predict" role="button">Authenticator</a>
-      </div>
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Amazing accuracy!</h1>
+      <p class="col-md-8 fs-4">
+        this is a dope thing! I hope you like it. please be cool... or else.
+      </p>
+      <a class="btn btn-primary" href="/predict" role="button">Authenticator</a>
     </div>
+  </div>
 
-    <footer class="pt-3 mt-4 text-muted border-top">
-        &copy; 2021
-    </footer>
-  
+  <footer class="pt-3 mt-4 text-muted border-top">&copy; 2021</footer>
 </div>
 {% endblock %}
