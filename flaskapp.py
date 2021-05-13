@@ -15,7 +15,7 @@ if ENV == 'dev':
   app.debug = True
   app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dre:*******@localhost/banknote'
 else:
-  app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://hsspgjxqyxgdhu:d04cb3bf6d68cc00f0dfbcb0ad7f30f7cadd1fb47b99e5f0984346d196bc39db@ec2-52-87-107-83.compute-1.amazonaws.com:5432/db8rlc5l03frv2'
+  app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hsspgjxqyxgdhu:d04cb3bf6d68cc00f0dfbcb0ad7f30f7cadd1fb47b99e5f0984346d196bc39db@ec2-52-87-107-83.compute-1.amazonaws.com:5432/db8rlc5l03frv2'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
